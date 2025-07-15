@@ -1,3 +1,8 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
 struct PriorityProcess {
     int pid, arrival, burst, remaining, priority, waiting, turnaround, completion;
 };
