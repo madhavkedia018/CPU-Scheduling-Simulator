@@ -1,3 +1,12 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+struct Process {
+    int pid, arrival, burst, waiting, turnaround;
+};
+
 void roundRobin(vector<Process>& processes, int quantum) {
     int n = processes.size();
     vector<int> remaining(n), waiting(n, 0), turnaround(n);
