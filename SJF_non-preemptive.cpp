@@ -1,3 +1,12 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+struct Process {
+    int pid, arrival, burst, waiting, turnaround;
+};
+
 void sjfScheduling(vector<Process>& processes) {
     int n = processes.size();
     vector<bool> done(n, false);
