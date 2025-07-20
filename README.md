@@ -23,10 +23,10 @@ A **C++ console-based simulator** implementing key CPU scheduling algorithms fou
 -  **Context switch tracking** with count of switches  
 -  **Real-time preemption** and process selection based on scheduling policy  
 -  **Computation of all key performance metrics**:
-  - Waiting Time  
-  - Turnaround Time  
-  - Completion Time  
-  - **Response Time**  
+   - Waiting Time  
+   - Turnaround Time  
+   - Completion Time  
+   - Response Time 
 -  **Starvation & fairness scenarios** to help analyze scheduling trade-offs  
 -  **Gantt Chart Visualization** for intuitive process timeline analysis  
 -  **User-friendly input prompts** for dynamic testing  
