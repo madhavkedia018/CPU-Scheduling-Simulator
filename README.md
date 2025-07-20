@@ -13,7 +13,7 @@ A **C++ console-based simulator** implementing key CPU scheduling algorithms fou
 - **Round Robin** – With configurable time quantum  
 - **Priority Scheduling**  
   - Non-Preemptive  
-  - Preemptive (with user-specified priority order: higher or lower number = higher priority)
+  - Preemptive (with user-specified priority order)
 
 ---
 
