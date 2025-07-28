@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import (
     QTableWidget, QTableWidgetItem, QSpinBox, QHeaderView, QMessageBox, QLineEdit
 )
 from scheduler import *
+from gantt import draw_gantt
 
 class SchedulerGUI(QWidget):
     def __init__(self):
@@ -102,12 +103,19 @@ class SchedulerGUI(QWidget):
         ]
 
         results = []
+        best_proc_set = None
+        best_algo = None
+
         for name, algo in algorithms:
             copied = [Process(p.pid, p.arrival, p.burst, p.priority) for p in processes]
             completed = algo(copied)
             avg_wait = sum(p.waiting for p in completed) / len(completed)
             avg_turn = sum(p.turnaround for p in completed) / len(completed)
             results.append((name, avg_wait, avg_turn))
+
+            if best_proc_set is None or avg_wait < best_proc_set[1]:
+                best_proc_set = (completed, avg_wait)
+                best_algo = name
 
         self.result_table.setRowCount(0)
         for r in results:
@@ -117,8 +125,9 @@ class SchedulerGUI(QWidget):
             self.result_table.setItem(row, 1, QTableWidgetItem(f"{r[1]:.2f}"))
             self.result_table.setItem(row, 2, QTableWidgetItem(f"{r[2]:.2f}"))
 
-        best = min(results, key=lambda x: x[1])  # Based on avg waiting time
-        self.best_algo_label.setText(f"Best Algorithm: {best[0]} (Avg WT: {best[1]:.2f})")
+        self.best_algo_label.setText(f"Best Algorithm: {best_algo} (Avg WT: {best_proc_set[1]:.2f})")
+
+        draw_gantt(best_proc_set[0], best_algo)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
